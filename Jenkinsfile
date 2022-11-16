@@ -6,6 +6,7 @@ pipline {
     stage ('build') {
       steps ('First Step'){
         sh ('printenv')
+        sh ('echo 'hello' > hello.txt)
         
       } 
     }    
