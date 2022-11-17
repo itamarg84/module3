@@ -1,32 +1,39 @@
 
-
-pipline {
-  environment {
-    AWS_ACCESS_KEY_ID  = "AKIAXA5YYH4J3W7YI4UK"
-    AWS_DEFAULT_REGION = "wBQcVuNIUr09qhDYdoIDG+RcO5oVKsNnUHruNNi4"
-    AWS_DEFAULT_REGION = "us-east-1"
-     
-    
-  
-  stages {
-    stage ('build') {
-      steps {
-        sh 'printenv'
-        
-      } 
-    }    
-    stage ('publish ECR') {
-      steps {
-        withenv (["AWS_ACCESS_KEY_ID-${env.AWS_ACCESS_KEY_ID}", "AWS_SECRET_ACCESS_KEY_ID-${env.AWS_SECRET_ACCESS_KEY_ID}", "AWS_DEFAULT_REGION-${env.AWS_DEFAULT_REGION}"]) {
-          sh 'docker login -u AWS -p $(aws ecr-public get-login-password --region us-east-1) 483034414867.dkr.ecr.us-east-1.amazonaws.com/itamar_ecr'
-          sh 'docker build -t itamar_ecr . '
-          sh 'docker tag itamar_ecr:""$BUILD_ID""'
-          sh 'docker push 483034414867.dkr.ecr.us-east-1.amazonaws.com/itamar_ecr/itamar_ecr:""$BUILD_ID""'
-          
-          }
-        }
-      }
+pipeline {
+    agent any
+    options {
+        skipStagesAfterUnstable()
     }
-  }
+    stages {
+         stage('Clone repository') { 
+            steps { 
+                script{
+                checkout scm
+                }
+            }
+        }
+
+        stage('Build') { 
+            steps { 
+                script{
+                 app = docker.build("underwater")
+                }
+            }
+        }
+        stage('Test'){
+            steps {
+                 echo 'Empty'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script{
+                        docker.withRegistry('https://483034414867.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:aws-credentials') {
+                    app.push("${env.BUILD_NUMBER}")
+                    app.push("latest")
+                    }
+                }
+            }
+        }
+    }
 }
-  
