@@ -9,7 +9,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = def myImage = docker.build('itamar_ecr')
+          dockerImage = def myImage = docker.build registry + ":latest"
         }
       }
     }
