@@ -15,9 +15,9 @@ pipeline {
                   'ecr:us-east-1:0535d321-41ee-44c1-aa90-71c05ec9c3f9') {
                   def myImage = docker.build('itamar_ecr')
                   myImage.push('latest')
-              }
-          }
+           }
+        }
       }
-     }
-                  
-  }   
+    } 
+  }
+}
