@@ -10,14 +10,11 @@ pipeline {
      stage ('publish ECR') {
       steps {
           script {
-              docker.withRegistry(
-                  'https://aws ecr get-login-password --region us-east-1 483034414867.dkr.ecr.us-east-1.amazonaws.com',
-                  'ecr:us-east-1:0535d321-41ee-44c1-aa90-71c05ec9c3f9') {
-                  def myImage = docker.build('itamar_ecr')
-                  myImage.push('latest')
+            sh ('aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 483034414867.dkr.ecr.us-east-1.amazonaws.com')
+            sh ('docker build -t itamar_ecr .')
+            sh ('docker tag itamar_ecr:latest 483034414867.dkr.ecr.us-east-1.amazonaws.com/itamar_ecr:latest')
+            sh ('docker push 483034414867.dkr.ecr.us-east-1.amazonaws.com/itamar_ecr:latest')
            }
         }
-      }
-    } 
-  }
-}
+     }
+      
