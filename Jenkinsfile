@@ -23,9 +23,10 @@ pipline {
           sh 'docker tag itamar_ecr:""$BUILD_ID""'
           sh 'docker push 483034414867.dkr.ecr.us-east-1.amazonaws.com/itamar_ecr/itamar_ecr:""$BUILD_ID""'
           
+          }
         }
       }
     }
   }
 }
-
+  
