@@ -18,7 +18,7 @@ pipeline {
       steps {
           script {
               docker.withRegistry(
-                'https://${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com','ecr:${AWS_DEFAULT_REGION}:${AWS_CRE}') {
+                'https://${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com',ecr:'${AWS_DEFAULT_REGION}:${AWS_CRE}') {
                   def myImage = docker.build('itamar_ecr')
                   myImage.push('latest')
                 
