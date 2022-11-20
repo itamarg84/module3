@@ -6,7 +6,7 @@ pipeline {
     AWS_CRE= '0535d321-41ee-44c1-aa90-71c05ec9c3f9'
     SERVICE_NAME = 'itamar-cer-service'
     CLUSTER_NAME = 'itamar-ecr'
-    IMAGE_TAG = "${env.BUILD_NUMBER}"
+    REPOSITORY_URI = “${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com”
   }
   stages {
     stage ('build') {
@@ -19,7 +19,7 @@ pipeline {
       steps {
           script {
               docker.withRegistry(
-                'https://${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com','ecr:us-east-1:0535d321-41ee-44c1-aa90-71c05ec9c3f9') {
+                'https://${REPOSITORY_URI}','ecr:us-east-1:0535d321-41ee-44c1-aa90-71c05ec9c3f9') {
                   def myImage = docker.build('itamar_ecr')
                 myImage.push('latest')
                 
