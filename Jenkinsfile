@@ -29,7 +29,9 @@ pipeline {
               }
               } catch(Exception e) {
               echo e.message.toString()
-             }}
+                 }
+               }
+             }
            }
         }
       }
