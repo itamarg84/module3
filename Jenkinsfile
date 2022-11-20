@@ -21,7 +21,7 @@ pipeline {
         
           script {
              withAWS(region: 'us-east-1', credentials: '0535d321-41ee-44c1-aa90-71c05ec9c3f9') {
-             def updateService = "aws ecs update-service --service itamar-cer-service --cluster itamar-ecr --force-new-deployment"
+             def updateService = "aws ecs update-service --service itamar-cer-service2 --cluster itamar-ecr --force-new-deployment"
              def runUpdateService = sh(returnStdout: true, script: updateService)
              
               }
