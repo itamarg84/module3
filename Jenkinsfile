@@ -27,10 +27,8 @@ pipeline {
              sh(returnStdout: true, script: serviceStable)
              // put all your slack messaging here
               }
-              } catch(Exception e) {
-              echo e.message.toString()
-                 }
-               }
+              } 
+               
              }
            }
         }
