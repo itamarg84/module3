@@ -21,7 +21,7 @@ pipeline {
               docker.withRegistry(
                 'https://${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com','ecr:us-east-1:0535d321-41ee-44c1-aa90-71c05ec9c3f9') {
                   def myImage = docker.build('itamar_ecr')
-                  myImage.push(${env.BUILD_NUMBER})
+                myImage.push(${IMAGE_TAG})
                 
                 
                 
