@@ -29,7 +29,7 @@ pipeline {
       }
      }
       steps{
-        sh "docker rmi 'itamar_ecr':'latest'
+        sh "docker rmi 'itamar_ecr':'latest'"
          
 
       }
