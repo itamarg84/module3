@@ -4,6 +4,8 @@ pipeline {
     ecrcredentials = "ecr:us-east-1:0535d321-41ee-44c1-aa90-71c05ec9c3f9"
     region = "us-east-1"
     jenkins_id = "0535d321-41ee-44c1-aa90-71c05ec9c3f9"
+    service_name = "itamar-cer-service2"
+    cluster_name = "itamar-ecr"
   } 
   agent any
   stages {
@@ -26,7 +28,7 @@ pipeline {
         
           script {
              withAWS(region: region, credentials: jenkins_id) {
-             def updateService = "aws ecs update-service --service itamar-cer-service2 --cluster itamar-ecr --force-new-deployment"
+             def updateService = "aws ecs update-service --service service_name --cluster cluster_name --force-new-deployment"
              def runUpdateService = sh(returnStdout: true, script: updateService)
              
               }
