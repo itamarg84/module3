@@ -2,6 +2,7 @@ pipeline {
   environment {
     ecrurl = "https://483034414867.dkr.ecr.us-east-1.amazonaws.com"
     ecrcredentials = "ecr:us-east-1:0535d321-41ee-44c1-aa90-71c05ec9c3f9"
+    region = "us-east-1"
   } 
   agent any
   stages {
@@ -23,7 +24,7 @@ pipeline {
       stage ('update service') {
         
           script {
-             withAWS(region: 'us-east-1', credentials: '0535d321-41ee-44c1-aa90-71c05ec9c3f9') {
+             withAWS(region, credentials: '0535d321-41ee-44c1-aa90-71c05ec9c3f9') {
              def updateService = "aws ecs update-service --service itamar-cer-service2 --cluster itamar-ecr --force-new-deployment"
              def runUpdateService = sh(returnStdout: true, script: updateService)
              
