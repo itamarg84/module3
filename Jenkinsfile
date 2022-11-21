@@ -22,7 +22,18 @@ pipeline {
                   def myImage = docker.build('itamar_ecr')
                   myImage.push('latest')
                 
-                
+     stage('Remove Unused docker image - Master') {
+      when {
+      anyOf {
+            branch 'master'
+      }
+     }
+      steps{
+        sh "docker rmi 'itamar_ecr':'latest'
+         
+
+      }
+      } // End of remove unused docker image for mast           
                 
       stage ('update service') {
         
