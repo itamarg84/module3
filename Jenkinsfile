@@ -34,7 +34,7 @@ pipeline {
         
           script {
              withAWS(region: region, credentials: jenkins_id) {
-             def updateService = "aws ecs update-service --service service_name --cluster itamar-ecr --force-new-deployment"
+               def updateService = "aws ecs update-service --service ${service_name} --cluster itamar-ecr --force-new-deployment"
              def runUpdateService = sh(returnStdout: true, script: updateService)
              
               }
