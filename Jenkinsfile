@@ -20,7 +20,7 @@ pipeline {
       steps {
           script {
               docker.withRegistry(ecrurl, ecrcredentials) {
-                def myImage = docker.build(${image_name})
+                def myImage = docker.build(image_name)
                   myImage.push('latest')
                 
      
