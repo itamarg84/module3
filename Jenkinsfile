@@ -22,10 +22,10 @@ pipeline {
                   def myImage = docker.build('itamar_ecr')
                   myImage.push('latest')
                 
-     stage('Remove Unused docker image - Master') {
+     stage('Remove Unused docker image - main') {
       when {
       anyOf {
-            branch 'master'
+            branch 'main'
       }
      }
       steps{
