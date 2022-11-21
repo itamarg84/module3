@@ -1,7 +1,7 @@
 pipeline {
   environment {
     ecrurl = "https://${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com"
-    ecrcredentials = "ecr:${AWS_DEFAULT_REGION}:0535d321-41ee-44c1-aa90-71c05ec9c3f9"
+    ecrcredentials = "ecr:${AWS_DEFAULT_REGION}:${JENK_ID}"
     region = "${AWS_DEFAULT_REGION}"
     jenkins_id = "${JENK_ID}"
     service_name = "itamar-cer-service2"
