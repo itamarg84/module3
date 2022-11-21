@@ -1,4 +1,8 @@
 pipeline {
+  environment {
+    ecrurl = "https://483034414867.dkr.ecr.us-east-1.amazonaws.com"
+    ecrcredentials = "ecr:us-east-1:0535d321-41ee-44c1-aa90-71c05ec9c3f9"
+  } 
   agent any
   stages {
     stage ('build') {
@@ -10,8 +14,7 @@ pipeline {
      stage ('publish ECR') {
       steps {
           script {
-              docker.withRegistry(
-                  'https://483034414867.dkr.ecr.us-east-1.amazonaws.com','ecr:us-east-1:0535d321-41ee-44c1-aa90-71c05ec9c3f9') {
+              docker.withRegistry(ecrurl, ecrcredentials) {
                   def myImage = docker.build('itamar_ecr')
                   myImage.push('latest')
                 
