@@ -6,6 +6,7 @@ pipeline {
     jenkins_id = "${JENK_ID}"
     service_name = "${SERVICE_NAME}"
     cluster_name = "${CLUSTER_NAME}"
+    image_name   = "${IMAGE_NAME}"
   } 
   agent any
   stages {
@@ -19,14 +20,14 @@ pipeline {
       steps {
           script {
               docker.withRegistry(ecrurl, ecrcredentials) {
-                  def myImage = docker.build('itamar_ecr')
+                def myImage = docker.build('${image_name}')
                   myImage.push('latest')
                 
      
       
       stage('Remove Unused docker image - main') {
        
-        sh "docker rmi 'itamar_ecr':'latest'"
+        sh "docker rmi '${image_name}':'latest'"
          }
                    
                 
