@@ -28,7 +28,7 @@ pipeline {
        
         sh "docker rmi 'itamar_ecr':'latest'"
          }
-         } // End of remove unused docker image for mast           
+                   
                 
       stage ('update service') {
         
