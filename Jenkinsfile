@@ -2,7 +2,7 @@ pipeline {
   environment {
     ecrurl = "https://483034414867.dkr.ecr.us-east-1.amazonaws.com"
     ecrcredentials = "ecr:us-east-1:0535d321-41ee-44c1-aa90-71c05ec9c3f9"
-    region = "us-east-1"
+    region = ${AWS_DEFAULT_REGION}
     jenkins_id = "0535d321-41ee-44c1-aa90-71c05ec9c3f9"
     service_name = "itamar-cer-service2"
     cluster_name = "itamar-ecr"
