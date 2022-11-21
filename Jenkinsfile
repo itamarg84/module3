@@ -25,7 +25,7 @@ pipeline {
      
       
       stage('Remove Unused docker image - main') {
-      steps{
+       steps{
         sh "docker rmi 'itamar_ecr':'latest'"
          }
          } // End of remove unused docker image for mast           
