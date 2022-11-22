@@ -22,7 +22,7 @@ pipeline {
           script {
               docker.withRegistry(ecrurl, ecrcredentials) {
                 def myImage = docker.build(image_name)
-                  myImage.push(build_num)
+                  myImage.push(image_name:build_num)
                 
      
       
