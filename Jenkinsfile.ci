@@ -7,7 +7,7 @@ pipeline {
     service_name = "${SERVICE_NAME}"
     cluster_name = "${CLUSTER_NAME}"
     image_name   = "${IMAGE_NAME}"
-    build_num    = "${{BUILD_NUMBER}"
+    build_num    = "${BUILD_NUMBER}"
   } 
   agent any
   stages {
