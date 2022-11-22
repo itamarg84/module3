@@ -8,7 +8,11 @@ pipeline {
     cluster_name = "${CLUSTER_NAME}"
     image_name   = "${IMAGE_NAME}"
   } 
-  
+  agent any
+  stages {
+    stage ('build') {
+      steps {
+        sh 'printenv'
                   
       stage ('update service') {
         
@@ -21,3 +25,6 @@ pipeline {
               } 
              }
             }
+           }
+          }
+         }
