@@ -1,5 +1,6 @@
 pipeline {
   environment {
+    AWS_ACCOUNT_ID = ''
     ecrurl = "https://${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com"
     ecrcredentials = "ecr:${AWS_DEFAULT_REGION}:${JENK_ID}"
     region = "${AWS_DEFAULT_REGION}"
@@ -24,7 +25,7 @@ pipeline {
       steps {
        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: '0535d321-41ee-44c1-aa90-71c05ec9c3f9']]) {
         sh 'env'
-        sh 'aws sts get-caller-identity'
+        def AWS_ACCOUNT_ID = sh (script: ‘aws sts get-caller-identity --query “Account” --output text’,returnStdout: true).trim()
            }}}
     
     
