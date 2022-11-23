@@ -20,10 +20,12 @@ pipeline {
     
     
     stage ('build') {
+    
+      steps {
        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'my-example-creds']]) {
         sh 'env'
         sh 'aws sts get-caller-identity'
-           }}
+           }}}
     
     
     
