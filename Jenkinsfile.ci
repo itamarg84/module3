@@ -36,7 +36,7 @@ pipeline {
     stage ('publish ECR') {
       steps {
           script {
-              docker.withRegistry('https://"${AWS_ACCOUNT_ID}".dkr.ecr.us-east-1.amazonaws.com', ecrcredentials) {
+              docker.withRegistry("https://'${AWS_ACCOUNT_ID}'.dkr.ecr.us-east-1.amazonaws.com", ecrcredentials) {
                 def myImage = docker.build(image_name)
                   myImage.push('latest')
                 
