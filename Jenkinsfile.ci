@@ -21,10 +21,10 @@ pipeline {
     
     stage ('param') {
     
-      steps {
+      
        withAws([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: '0535d321-41ee-44c1-aa90-71c05ec9c3f9']]) {
          def AWS_ACCOUNT_ID = sh (script: 'aws sts get-caller-identity --query “Account” --output text',returnStdout: true).trim()
-           }}}
+           }}
     
     
     
