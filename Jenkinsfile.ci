@@ -9,6 +9,16 @@ pipeline {
     image_name   = "${IMAGE_NAME}"
     build_num    = "${BUILD_NUMBER}"
   } 
+  
+   parameters {
+    string (name: 'AWS_DEFAULT_REGION', defaultValue: "us-east-1")
+    string (name: 'SERVICE_NAME', defaultValue: 'itamar-cer-service2')
+    string (name: 'CLUSTER_NAME', defaultValue: 'itamar-ecr')
+  }
+  
+  
+  
+  
   agent any
   stages {
     stage ('build') {
@@ -42,7 +52,11 @@ pipeline {
          
     stage ('Invoke_itamar_g2') {
       
-                build job: 'itamar_g2'
+                build job: 'itamar_g2' ,parameters: [
+            [$class:'StringParameterValue', name: 'AWS_DEFAULT_REGION', value: "${AWS_DEFAULT_REGION}"],
+            [$class:'StringParameterValue', name: 'SERVICE_NAME', value: "${SERVICE_NAME}"],
+            [$class:'StringParameterValue', name: 'CLUSTER_NAME', value: "${CLUSTER_NAME}"],
+          ]
          }
          
          
