@@ -32,10 +32,10 @@ pipeline {
          }
          
          
-    stage ('Invoke_pipelineA') {
-      steps {
+    stage ('Invoke_itamar_g2') {
+      
                 build job: 'itamar_g2'
-         }}
+         }
          
          
          
