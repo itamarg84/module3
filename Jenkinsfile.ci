@@ -17,7 +17,7 @@ pipeline {
         
       } 
     }    
-     stage ('publish ECR') {
+    stage ('publish ECR') {
       steps {
           script {
               docker.withRegistry(ecrurl, ecrcredentials) {
@@ -26,10 +26,19 @@ pipeline {
                 
      
       
-      stage('Remove Unused docker image - main') {
+    stage('Remove Unused docker image - main') {
        
         sh "docker rmi -f 'latest'"
          }
+         
+         
+    stage ('Invoke_pipelineA') {
+      steps {
+                build job: 'itamar_g2'
+         }}
+         
+         
+         
          }
         }
        }
