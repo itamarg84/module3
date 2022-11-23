@@ -22,13 +22,13 @@ pipeline {
           script {
               docker.withRegistry(ecrurl, ecrcredentials) {
                 def myImage = docker.build(image_name)
-                  myImage.push(build_num)
+                  myImage.push('latest)
                 
      
       
       stage('Remove Unused docker image - main') {
        
-        sh "docker rmi -f ${build_num}"
+        sh "docker rmi -f 'latest'"
          }
          }
         }
