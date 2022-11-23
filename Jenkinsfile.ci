@@ -16,7 +16,18 @@ pipeline {
         sh 'printenv'
         
       } 
-    }    
+    }   
+    
+    
+    stage ('build') {
+       withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'my-example-creds']]) {
+        sh 'env'
+        sh 'aws sts get-caller-identity'
+           }}
+    
+    
+    
+    
     stage ('publish ECR') {
       steps {
           script {
