@@ -21,7 +21,7 @@ pipeline {
         
       steps {
           script {
-             withAWS(${params.AWS_DEFAULT_REGION}, credentials: jenkins_id) {
+             withAWS(region:"${params.AWS_DEFAULT_REGION}", credentials: jenkins_id) {
                def updateService = "aws ecs update-service --service ${params.SERVICE_NAME} --cluster ${params.CLUSTER_NAME} --force-new-deployment"
                def runUpdateService = sh(returnStdout: true, script: updateService)
                 }
