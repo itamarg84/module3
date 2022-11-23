@@ -1,7 +1,7 @@
 pipeline {
   environment {
-    AWS_ACCOUNT_ID = ''
-    ecrurl = "https://${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com"
+    aws_account_id = "${AWS_ACCOUNT_ID}"
+    ecrurl = "https://${aws_account_id}.dkr.ecr.us-east-1.amazonaws.com"
     ecrcredentials = "ecr:${AWS_DEFAULT_REGION}:${JENK_ID}"
     region = "${AWS_DEFAULT_REGION}"
     jenkins_id = "${JENK_ID}"
