@@ -25,6 +25,7 @@ pipeline {
        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: '0535d321-41ee-44c1-aa90-71c05ec9c3f9']]) {
         sh 'env'
         sh 'aws sts get-caller-identity'
+        def AWS_ACCOUNT_ID = sh (script: ‘aws sts get-caller-identity --query “Account” --output text’,returnStdout: true).trim()
            }}}
     
     
