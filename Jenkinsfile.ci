@@ -19,25 +19,14 @@ pipeline {
     }   
     
     
-    stage ('param') {
-      steps {
-       script{
-         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: '0535d321-41ee-44c1-aa90-71c05ec9c3f9']]) {
-           def env.AWS_ACCOUNT_ID = sh (script: 'aws sts get-caller-identity --query "Account" --output text',returnStdout: true).trim()
-                   echo  "your account id is ${AWS_ACCOUNT_ID}"
-           }
-          }
-         }
-        }
-    
-    
     
     
     stage ('publish ECR') {
       steps {
           script {
-              
-              docker.withRegistry('https://${env.AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com', ecrcredentials) {
+              withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: '0535d321-41ee-44c1-aa90-71c05ec9c3f9']]) {
+              def AWS_ACCOUNT_ID = sh (script: 'aws sts get-caller-identity --query "Account" --output text',returnStdout: true).trim()
+              docker.withRegistry('https://${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com', ecrcredentials) {
                 def myImage = docker.build(image_name)
                   myImage.push('latest')
                 
