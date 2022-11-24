@@ -4,10 +4,7 @@ pipeline {
     ecrcredentials = "ecr:${AWS_DEFAULT_REGION}:${JENK_ID}"
     region = "${AWS_DEFAULT_REGION}"
     jenkins_id = "${JENK_ID}"
-    //service_name = "${SERVICE_NAME}"
-    //cluster_name = "${CLUSTER_NAME}"
-    //image_name   = "${IMAGE_NAME}"
-    //build_num    = "${BUILD_NUMBER}"
+    
   } 
   
    parameters {
