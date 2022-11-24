@@ -2,7 +2,6 @@ pipeline {
   environment {
     AWS_ACCOUNT_ID =''
     ecrcredentials = "ecr:${AWS_DEFAULT_REGION}:${JENK_ID}"
-    //region = "${AWS_DEFAULT_REGION}"
     jenkins_id = "${JENK_ID}"
     
   } 
