@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-itamar 
+  labels:
+    app: hello-world-itamar-app
+spec:
+  selector:
+    matchLabels:
+        app: hello-world-itamar-app
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: hello-world-itamar-app
+    spec:
+      containers:
+        - name: hello-world-itamar-app
+          image: 483034414867.dkr.ecr.us-east-1.amazonaws.com/itamar_ecr:latest
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          imagePullPolicy: Alway
