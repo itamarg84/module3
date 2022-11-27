@@ -8,8 +8,7 @@ pipeline {
 
    parameters {
     string (name: 'AWS_DEFAULT_REGION', defaultValue: "us-east-1")
-    string (name: 'SERVICE_NAME', defaultValue: 'itamar-cer-service2')
-    string (name: 'CLUSTER_NAME', defaultValue: 'itamar-ecr')
+    
   }
 
 
