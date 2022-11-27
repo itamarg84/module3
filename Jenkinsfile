@@ -46,7 +46,7 @@ pipeline {
 
 
     stage('Deploy'){
-         kubernetesDeploy (configs: deployment.yml  , kubeconfigId:"e0b4da5d-4e8c-4a05-9879-b9c3d753cdd3")
+         kubernetesDeploy (configs: "deployment.yml"  , kubeconfigId:"e0b4da5d-4e8c-4a05-9879-b9c3d753cdd3")
        //sh 'kubectl apply -f deployment.yml'
             }
 
