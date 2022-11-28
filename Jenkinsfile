@@ -49,7 +49,8 @@ pipeline {
 
     stage('Deploy'){
          
-        sh 'kubectl apply -f deployment.yml'
+        //sh 'kubectl apply -f deployment.yml'
+          sh 'whoami'
             }
 
 
