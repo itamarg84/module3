@@ -41,7 +41,12 @@ pipeline {
 
     stage('Remove Unused docker image - main') {
 
-        //sh "docker rmi -f 'latest'"
+        sh "docker rmi -f 'latest'"
+        def build = currentBuild.rawBuild
+        def cause = build.getCause(hudson.model.Cause.UserIdCause.class)
+        def name = cause.getUserName()
+        echo "User: " + name
+
          }
 
 
