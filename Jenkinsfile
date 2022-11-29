@@ -48,14 +48,13 @@ pipeline {
 
 
     stage ("connect to kubernetes") {
-      steps {
-         script {
+      
+        
              end = "failure"
              sh 'aws eks --region=us-east-1 update-kubeconfig --name education-eks-D2mdICJD'
              sh 'aws sts get-caller-identity'
              end = "success"
-                }
-           }
+               
         }
 
 
