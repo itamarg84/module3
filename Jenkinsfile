@@ -47,8 +47,8 @@ pipeline {
          }
 
 
-    stage("connect to kubernetes") {
-      steps{
+    stage ("connect to kubernetes") {
+      steps {
          script {
              end = "failure"
              sh 'aws eks --region=us-east-1 update-kubeconfig --name education-eks-D2mdICJD'
