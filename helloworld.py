@@ -8,7 +8,7 @@ api = Api(app)
 
 class Greeting (Resource):
     def get(self):
-        return 'Hello World! from itamar and nina my love'
+        return 'Hello World! from itamar and nina my love!!!!'
 
 api.add_resource(Greeting, '/') # Route_1
 
