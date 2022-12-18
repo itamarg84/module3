@@ -50,11 +50,11 @@ pipeline {
     stage ("connect to kubernetes") {
       
         
-              end = "failure"
-              sh 'aws eks --region=us-east-1 update-kubeconfig --name education-eks-D2mdICJD'
-              sh 'aws sts get-caller-identity'
-              sh 'kubectl apply -f deployment.yml'
-              end = "success"
+           //   end = "failure"
+           //   sh 'aws eks --region=us-east-1 update-kubeconfig --name education-eks-D2mdICJD'
+           //   sh 'aws sts get-caller-identity'
+           //   sh 'kubectl apply -f deployment.yml'
+           //   end = "success"
                
          }
 
