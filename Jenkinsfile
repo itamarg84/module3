@@ -35,7 +35,7 @@ pipeline {
               REPOSITORY_URL = "https://${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com"
               docker.withRegistry("${REPOSITORY_URL}", ecrcredentials) {
                 def myImage = docker.build(image_name)
-                  myImage.push('latest')
+                  myImage.push('latest.1')
 
 
 
